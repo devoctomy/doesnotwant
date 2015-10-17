@@ -1,0 +1,9 @@
+﻿1.  SysTray Icon that only displays balloon popups of when someone is skipped (if enabled)
+2.  Double clicking tray icon should open a main window
+3.  Right clicking the tray icon should display a context menu with
+	-  Block currently playing
+	-  Exit
+3.  Main window should have an ok button that just hides the window again
+4.  Main window should have a flow layout panel list of round icons with a line through showing the face of the blocked artist
+5.  Artists can be removed from the list by left selecting then clicking an unblock button
+6.  Main windows should show currently playing information
