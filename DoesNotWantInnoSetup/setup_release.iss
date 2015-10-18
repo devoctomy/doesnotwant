@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "DoesNotWant"
-#define MyAppVersion GetFileVersion('C:\npSoftware\GitHub\doesnotwant\DoesNotWant\bin\Debug\DoesNotWant.exe')
+#define MyAppVersion GetFileVersion('C:\npSoftware\GitHub\doesnotwant\DoesNotWant\bin\Release\DoesNotWant.exe')
 #define MyAppPublisher "devoctomy"
 #define MyAppURL "http://www.doesnotwant.com/"
 #define MyAppExeName "DoesNotWant.exe"
@@ -11,7 +11,7 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{F034C00D-EB42-41FB-AA05-9B61811A82ED}
+AppId={{43F8A87B-27D3-4061-86BE-9A96499C19F7}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppVerName={#MyAppName} {#MyAppVersion}
@@ -20,11 +20,10 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
-DisableDirPage=yes
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 LicenseFile=C:\npSoftware\GitHub\doesnotwant\LICENSE
-OutputBaseFilename=DoesNotWant_debug_{#MyAppVersion}
+OutputBaseFilename=DoesNotWant_release_{#MyAppVersion}
 Compression=lzma
 SolidCompression=yes
 VersionInfoVersion={#MyAppVersion}
@@ -38,7 +37,11 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: "C:\Program Files (x86)\Inno Setup 5\Examples\MyProg.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\npSoftware\GitHub\doesnotwant\DoesNotWant\bin\Debug\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\npSoftware\GitHub\doesnotwant\DoesNotWant\bin\Release\config.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\npSoftware\GitHub\doesnotwant\DoesNotWant\bin\Release\DoesNotWant.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\npSoftware\GitHub\doesnotwant\DoesNotWant\bin\Release\DoesNotWant.exe.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\npSoftware\GitHub\doesnotwant\DoesNotWant\bin\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\npSoftware\GitHub\doesnotwant\DoesNotWant\bin\Release\SpotifyAPI.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
