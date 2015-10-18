@@ -166,16 +166,19 @@ namespace devoctomy.DoesNotWant.Configuration
             await Save();
         }
 
-        public Boolean IsFiltered(SpotifyAPI.Local.Models.Track iTrack)
+        public Boolean IsFiltered(SpotifyAPI.Local.Models.Track iTrack, out FilterBase oFilter)
         {
-            if(TrackFilters.ContainsKey(iTrack.TrackResource.Uri))
+            oFilter = null;
+            if (TrackFilters.ContainsKey(iTrack.TrackResource.Uri))
             {
+                oFilter = TrackFilters[iTrack.TrackResource.Uri];
                 return (true);
             }
             else
             {
                 if(ArtistFilters.ContainsKey(iTrack.ArtistResource.Uri))
                 {
+                    oFilter = ArtistFilters[iTrack.ArtistResource.Uri];
                     return (true);
                 }
                 else
@@ -186,6 +189,7 @@ namespace devoctomy.DoesNotWant.Configuration
                         {
                             if (iTrack.ArtistResource.Name.IndexOf(curArtistFilter.Value, StringComparison.InvariantCultureIgnoreCase) > -1)
                             {
+                                oFilter = curArtistFilter;
                                 return (true);
                             }
                         }

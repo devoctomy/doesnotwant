@@ -63,7 +63,7 @@
             this.lblDisconnected.Name = "lblDisconnected";
             this.lblDisconnected.Size = new System.Drawing.Size(345, 95);
             this.lblDisconnected.TabIndex = 1;
-            this.lblDisconnected.Text = "Disconnected\r\nSpotify is not running\r\n";
+            this.lblDisconnected.Text = "Disconnected!\r\nSpotify is not running\r\n";
             this.lblDisconnected.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // NotConnected

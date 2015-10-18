@@ -20,6 +20,8 @@ namespace devoctomy.DoesNotWant.Filters
 
         public Boolean Enabled { get; set; }
 
+        public Int32 FilterCount { get; set; } = 0;
+
         #endregion
 
         #region protected methods
@@ -30,6 +32,7 @@ namespace devoctomy.DoesNotWant.Filters
 
             pJOtBase.Add("Type", new JValue(_Type));
             pJOtBase.Add("Enabled", new JValue(Enabled));
+            pJOtBase.Add("FilterCount", new JValue(FilterCount));
 
             return (pJOtBase);
         }
@@ -37,6 +40,7 @@ namespace devoctomy.DoesNotWant.Filters
         protected static void LoadBase(JObject iJSON, FilterBase iFilter)
         {
             iFilter.Enabled = iJSON["Enabled"].Value<Boolean>();
+            iFilter.FilterCount = iJSON["FilterCount"].Value<Int32>();
         }
 
         #endregion

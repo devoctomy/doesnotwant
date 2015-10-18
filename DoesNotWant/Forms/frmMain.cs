@@ -54,9 +54,11 @@ namespace devoctomy.DoesNotWant.Forms
 
         public void TrackChanged(MonitorTrackChangedEventArgs iArgs)
         {
-            if(Config.Current().IsFiltered(iArgs.CurrentTrack))
+            FilterBase pFBeFilter = null;
+            if(Config.Current().IsFiltered(iArgs.CurrentTrack, out pFBeFilter))
             {
                 iArgs.Skip = true;
+                pFBeFilter.FilterCount += 1;
             }
             
             if(!iArgs.Skip)
