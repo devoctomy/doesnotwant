@@ -1,5 +1,7 @@
 ﻿using SpotifyAPI.Local;
 using SpotifyAPI.Local.Models;
+using SpotifyAPI.Web;
+using SpotifyAPI.Web.Models;
 using System;
 using System.Threading;
 
@@ -166,10 +168,6 @@ namespace devoctomy.DoesNotWant.Spotify
                 cMRERunning.Reset();
             }
         }
-
-        #endregion
-
-        #region object events
 
         private void CSLlLocalAPI_OnTrackChange(TrackChangeEventArgs e)
         {

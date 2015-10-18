@@ -93,10 +93,40 @@ namespace devoctomy.DoesNotWant.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Dirt_Filter_256_white {
+            get {
+                object obj = ResourceManager.GetObject("Dirt_Filter_256_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Dirt_Filter_32_black {
             get {
                 object obj = ResourceManager.GetObject("Dirt_Filter_32_black", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Dirt_Filter_black {
+            get {
+                object obj = ResourceManager.GetObject("Dirt_Filter_black", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Dirt_Filter_white {
+            get {
+                object obj = ResourceManager.GetObject("Dirt_Filter_white", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

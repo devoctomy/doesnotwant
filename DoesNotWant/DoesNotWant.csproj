@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Dirt Filter_black.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -56,6 +59,8 @@
   <ItemGroup>
     <Compile Include="Configuration\Config.cs" />
     <Compile Include="Configuration\ConfigOptions.cs" />
+    <Compile Include="Drawing\DrawingUtility.cs" />
+    <Compile Include="Extensions\BitmapExtensions.cs" />
     <Compile Include="Filters\TrackFilter.cs" />
     <Compile Include="Filters\ArtistFilter.cs" />
     <Compile Include="Filters\FilterBase.cs" />
@@ -162,6 +167,9 @@
     <None Include="Resources\Boy-02_48_black.png" />
     <None Include="Resources\Music Notes_48_black.png" />
     <None Include="Resources\Like - 01_32.png" />
+    <None Include="Resources\Dirt Filter_white.ico" />
+    <None Include="Resources\Dirt Filter_black.ico" />
+    <None Include="Resources\Icons\White\Dirt Filter_256_white.png" />
     <Content Include="TODO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

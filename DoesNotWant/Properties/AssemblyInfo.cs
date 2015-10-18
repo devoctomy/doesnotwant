@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("DouchebagFilter")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("DoesNotWant")]
+[assembly: AssemblyDescription("Artist / Track filter for Spotify, ban that stuff you just do not want.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("devoctomy")]
-[assembly: AssemblyProduct("DouchebagFilter")]
+[assembly: AssemblyProduct("DoesNotWant")]
 [assembly: AssemblyCopyright("Copyright © devoctomy 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace devoctomy.DoesNotWant.Configuration
 {
@@ -110,7 +111,7 @@ namespace devoctomy.DoesNotWant.Configuration
             }
         }
 
-        public void Save()
+        public async Task Save()
         {
             JObject pJOtConfig = new JObject();
 
@@ -120,14 +121,14 @@ namespace devoctomy.DoesNotWant.Configuration
             JArray pJAyArtistsFilters = new JArray();
             foreach (ArtistFilter curFilter in ArtistFilters.Values)
             {
-                pJAyArtistsFilters.Add(curFilter.ToJSON());
+                pJAyArtistsFilters.Add(await curFilter.ToJSON());
             }
             pJOtFilters.Add("Artists", pJAyArtistsFilters);
 
             JArray pJAyTrackFilters = new JArray();
             foreach (TrackFilter curFilter in TrackFilters.Values)
             {
-                pJAyTrackFilters.Add(curFilter.ToJSON());
+                pJAyTrackFilters.Add(await curFilter.ToJSON());
             }
             pJOtFilters.Add("Tracks", pJAyTrackFilters);
             pJOtConfig.Add("Filters", pJOtFilters);
@@ -135,7 +136,7 @@ namespace devoctomy.DoesNotWant.Configuration
             File.WriteAllText(FullPath, pJOtConfig.ToString());
         }
 
-        public void AddFilter(FilterBase iFilter)
+        public async Task AddFilter(FilterBase iFilter)
         {
             AllFilters.Add(iFilter);
             if(iFilter is ArtistFilter)
@@ -148,7 +149,21 @@ namespace devoctomy.DoesNotWant.Configuration
                 TrackFilter pTFrFilter = (TrackFilter)iFilter;
                 TrackFilters.Add(pTFrFilter.URI, pTFrFilter);
             }
-            Save();
+            await Save();
+        }
+
+        public async Task RemoveFilter(FilterBase iFilter)
+        {
+            AllFilters.Remove(iFilter);
+            if(iFilter is ArtistFilter)
+            {
+                ArtistFilters.Remove(iFilter.ToArtistFilter().Value);
+            }
+            else if(iFilter is TrackFilter)
+            {
+                TrackFilters.Remove(iFilter.ToTrackFilter().URI);
+            }
+            await Save();
         }
 
         public Boolean IsFiltered(SpotifyAPI.Local.Models.Track iTrack)

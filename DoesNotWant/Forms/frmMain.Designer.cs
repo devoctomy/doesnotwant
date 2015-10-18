@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panButtons = new System.Windows.Forms.Panel();
             this.butOK = new System.Windows.Forms.Button();
             this.panCurrentlyPlaying = new System.Windows.Forms.Panel();
@@ -37,6 +38,7 @@
             this.panFilters = new System.Windows.Forms.Panel();
             this.flpFilters = new System.Windows.Forms.FlowLayoutPanel();
             this.lblFilters = new System.Windows.Forms.Label();
+            this.ninMain = new System.Windows.Forms.NotifyIcon(this.components);
             this.panButtons.SuspendLayout();
             this.panCurrentlyPlaying.SuspendLayout();
             this.panFilters.SuspendLayout();
@@ -115,7 +117,9 @@
             // flpFilters
             // 
             this.flpFilters.AutoScroll = true;
-            this.flpFilters.BackColor = System.Drawing.Color.White;
+            this.flpFilters.BackColor = System.Drawing.SystemColors.Control;
+            this.flpFilters.BackgroundImage = global::devoctomy.DoesNotWant.Properties.Resources.Dirt_Filter_256_white;
+            this.flpFilters.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.flpFilters.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpFilters.Location = new System.Drawing.Point(0, 32);
             this.flpFilters.Name = "flpFilters";
@@ -133,6 +137,11 @@
             this.lblFilters.TabIndex = 2;
             this.lblFilters.Text = "FILTERS";
             this.lblFilters.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ninMain
+            // 
+            this.ninMain.Text = "DoesNotWant";
+            this.ninMain.Visible = true;
             // 
             // frmMain
             // 
@@ -167,6 +176,7 @@
         private System.Windows.Forms.Panel panFilters;
         private System.Windows.Forms.Label lblFilters;
         private System.Windows.Forms.FlowLayoutPanel flpFilters;
+        private System.Windows.Forms.NotifyIcon ninMain;
     }
 }
 

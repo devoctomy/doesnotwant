@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace devoctomy.DoesNotWant.Usercontrols
@@ -60,7 +61,12 @@ namespace devoctomy.DoesNotWant.Usercontrols
         {
             if(cDTkTrack != null)
             {
-                picImage.Image = cDTkTrack.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size640);
+                Image pImgOld = picImage.Image;
+                picImage.Image = cDTkTrack.GetAlbumArt(SpotifyAPI.Local.Enums.AlbumArtSize.Size160);
+                if(pImgOld != null)
+                {
+                    pImgOld.Dispose();
+                }
                 lblArtistName.Text = cDTkTrack.ArtistResource.Name;
                 lblTrackTitle.Text = cDTkTrack.TrackResource.Name;
                 butFilter.Visible = !cDTkTrack.IsAd();

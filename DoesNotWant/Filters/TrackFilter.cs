@@ -1,5 +1,9 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using devoctomy.DoesNotWant.Drawing;
+using devoctomy.DoesNotWant.Extensions;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Drawing;
+using System.Threading.Tasks;
 
 namespace devoctomy.DoesNotWant.Filters
 {
@@ -19,6 +23,10 @@ namespace devoctomy.DoesNotWant.Filters
 
         public String URI { get; set; }
 
+        public Bitmap Artwork { get; set; }
+
+        public String ExInfo { get; set; }
+
         #endregion
 
         #region construtor / destructor
@@ -28,20 +36,26 @@ namespace devoctomy.DoesNotWant.Filters
 
         }
 
-        public TrackFilter(String iURI)
+        public TrackFilter(String iURI, 
+            Bitmap iArtwork,
+            String iExInfo)
         {
             URI = iURI;
+            Artwork = iArtwork;
+            ExInfo = iExInfo;
         }
 
         #endregion
 
         #region public methods
 
-        public override JObject ToJSON()
+        public override async Task<JObject> ToJSON()
         {
             JObject pJOtJSON = BaseToJSON();
 
             pJOtJSON.Add("URI", new JValue(URI));
+            pJOtJSON.Add("Artwork", new JValue(await Artwork.ToBase64String()));
+            pJOtJSON.Add("ExInfo", new JValue(ExInfo));
 
             return (pJOtJSON);
         }
@@ -52,6 +66,8 @@ namespace devoctomy.DoesNotWant.Filters
 
             FilterBase.LoadBase(iJSON, pTFrFilter);
             pTFrFilter.URI = iJSON["URI"].Value<String>();
+            pTFrFilter.Artwork = DrawingUtility.LoadFromBase64String(iJSON["Artwork"].Value<String>());
+            pTFrFilter.ExInfo = iJSON["ExInfo"].Value<String>();
 
             return (pTFrFilter);
         }

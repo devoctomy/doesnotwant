@@ -43,7 +43,7 @@
             this.lblFilterType.Location = new System.Drawing.Point(256, 0);
             this.lblFilterType.Name = "lblFilterType";
             this.lblFilterType.Padding = new System.Windows.Forms.Padding(16, 0, 0, 0);
-            this.lblFilterType.Size = new System.Drawing.Size(551, 45);
+            this.lblFilterType.Size = new System.Drawing.Size(551, 32);
             this.lblFilterType.TabIndex = 1;
             this.lblFilterType.Text = "Filter Type";
             this.lblFilterType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -52,10 +52,10 @@
             // 
             this.lblFilterField.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblFilterField.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFilterField.Location = new System.Drawing.Point(256, 45);
+            this.lblFilterField.Location = new System.Drawing.Point(256, 32);
             this.lblFilterField.Name = "lblFilterField";
             this.lblFilterField.Padding = new System.Windows.Forms.Padding(16, 0, 0, 0);
-            this.lblFilterField.Size = new System.Drawing.Size(551, 45);
+            this.lblFilterField.Size = new System.Drawing.Size(551, 32);
             this.lblFilterField.TabIndex = 2;
             this.lblFilterField.Text = "Field";
             this.lblFilterField.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -81,15 +81,16 @@
             this.butUnFilter.Size = new System.Drawing.Size(101, 256);
             this.butUnFilter.TabIndex = 3;
             this.butUnFilter.UseVisualStyleBackColor = true;
+            this.butUnFilter.Click += new System.EventHandler(this.butUnFilter_Click);
             // 
             // lblFilterValue
             // 
             this.lblFilterValue.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblFilterValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFilterValue.Location = new System.Drawing.Point(256, 90);
+            this.lblFilterValue.Location = new System.Drawing.Point(256, 64);
             this.lblFilterValue.Name = "lblFilterValue";
             this.lblFilterValue.Padding = new System.Windows.Forms.Padding(16, 0, 0, 0);
-            this.lblFilterValue.Size = new System.Drawing.Size(551, 45);
+            this.lblFilterValue.Size = new System.Drawing.Size(551, 32);
             this.lblFilterValue.TabIndex = 4;
             this.lblFilterValue.Text = "Value";
             this.lblFilterValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

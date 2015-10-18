@@ -1,4 +1,5 @@
 ﻿using devoctomy.DoesNotWant.Configuration;
+using devoctomy.DoesNotWant.Filters;
 using devoctomy.DoesNotWant.Spotify;
 using devoctomy.DoesNotWant.Usercontrols;
 using System;
@@ -15,30 +16,9 @@ namespace devoctomy.DoesNotWant.Forms
         public frmMain()
         {
             InitializeComponent();
+            DisplayFilters();           //Display all filters
             Disconnected();             //Set as disconnected
             Program.StartMonitor();     //Start monitoring
-
-            Filter arse = new Filter();
-            arse.Size = new Size(flpFilters.Width - 32, panCurrentlyPlaying.Height);
-            flpFilters.Controls.Add(arse);
-
-            arse = new Filter();
-            arse.Size = new Size(flpFilters.Width - 32, panCurrentlyPlaying.Height);
-            flpFilters.Controls.Add(arse);
-
-            arse = new Filter();
-            arse.Size = new Size(flpFilters.Width - 32, panCurrentlyPlaying.Height);
-            flpFilters.Controls.Add(arse);
-
-            arse = new Filter();
-            arse.Size = new Size(flpFilters.Width - 32, panCurrentlyPlaying.Height);
-            flpFilters.Controls.Add(arse);
-
-            arse = new Filter();
-            arse.Size = new Size(flpFilters.Width - 32, panCurrentlyPlaying.Height);
-            flpFilters.Controls.Add(arse);
-
-
         }
 
         #endregion
@@ -77,11 +57,38 @@ namespace devoctomy.DoesNotWant.Forms
 
         #region private methods
 
+        private void DisplayFilter(FilterBase iFilter)
+        {
+            Filter pFilFilter = new Filter();
+            pFilFilter._Filter = iFilter;
+            pFilFilter.Size = new Size(flpFilters.Width - 32, 64);
+            pFilFilter.LikeClicked += PFilFilter_LikeClicked;
+            flpFilters.Controls.Add(pFilFilter);
+            pFilFilter.Show();
+        }
+
+        private void DisplayFilters()
+        {
+            flpFilters.Controls.Clear();
+
+            foreach (FilterBase curFilter in Config.Current().AllFilters)
+            {
+                DisplayFilter(curFilter);
+            }
+        }
+
         #endregion
 
         #region object events
 
-        private void trkTrack_FilterClicked(object sender, System.EventArgs e)
+        private async void PFilFilter_LikeClicked(object sender, EventArgs e)
+        {
+            Filter pFilFilter = (Filter)sender;
+            await Config.Current().RemoveFilter(pFilFilter._Filter);
+            flpFilters.Controls.Remove(pFilFilter);
+        }
+
+        private async void trkTrack_FilterClicked(object sender, System.EventArgs e)
         {
             using (frmCreateFilter pFrmCreateFilter = new frmCreateFilter())
             {
@@ -92,7 +99,8 @@ namespace devoctomy.DoesNotWant.Forms
                     pFrmCreateFilter.FilterTrack = pTrkCurrentlyPlaying;
                     if (pFrmCreateFilter.ShowDialog() == DialogResult.OK)
                     {
-                        Config.Current().AddFilter(pFrmCreateFilter.Filter);
+                        await Config.Current().AddFilter(pFrmCreateFilter.Filter);
+                        DisplayFilter(pFrmCreateFilter.Filter);
                         Program.SpotifyMonitor.Skip();
                     }
                 }
@@ -101,7 +109,12 @@ namespace devoctomy.DoesNotWant.Forms
 
         private void butOK_Click(object sender, EventArgs e)
         {
-            //Hide();
+            Hide();
+        }
+
+        private void ninMain_DoubleClick(object sender, EventArgs e)
+        {
+            Show();
         }
 
         #endregion

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Threading.Tasks;
 
 namespace devoctomy.DoesNotWant.Filters
 {
@@ -42,8 +43,9 @@ namespace devoctomy.DoesNotWant.Filters
 
         #region public methods
 
-        public virtual JObject ToJSON()
+        public virtual async Task<JObject> ToJSON()
         {
+            await Task.Delay(100);
             throw new NotImplementedException();
         }
 
@@ -65,6 +67,16 @@ namespace devoctomy.DoesNotWant.Filters
                     }
             }
             return (pFBeFilter);
+        }
+
+        public ArtistFilter ToArtistFilter()
+        {
+            return ((ArtistFilter)this);
+        }
+
+        public TrackFilter ToTrackFilter()
+        {
+            return ((TrackFilter)this);
         }
 
         #endregion

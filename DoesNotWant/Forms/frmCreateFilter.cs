@@ -83,9 +83,11 @@ namespace devoctomy.DoesNotWant.Forms
             butOK.Enabled = ((ArtistFilterConfig)cDicControls["artistfilterconfig"]).IsValidInput;
         }
 
-        private void PFTeType_TrackClicked(object sender, EventArgs e)
+        private async void PFTeType_TrackClicked(object sender, EventArgs e)
         {
-            Filter = new TrackFilter(FilterTrack.TrackResource.Uri);
+            Filter = new TrackFilter(FilterTrack.TrackResource.Uri, 
+                await FilterTrack.GetAlbumArtAsync(SpotifyAPI.Local.Enums.AlbumArtSize.Size160),
+                String.Format("{0}|{1}", FilterTrack.ArtistResource.Name, FilterTrack.TrackResource.Name));
             DialogResult = DialogResult.OK;
         }
 
@@ -105,15 +107,18 @@ namespace devoctomy.DoesNotWant.Forms
             }
         }
 
-        #endregion
-
-        private void butOK_Click(object sender, EventArgs e)
-        {           
-
+        private async void butOK_Click(object sender, EventArgs e)
+        {
             ArtistFilterConfig pAFCConfig = (ArtistFilterConfig)cDicControls["artistfilterconfig"];
-            Filter = new ArtistFilter(pAFCConfig.Field, pAFCConfig.Value);
+            Filter = new ArtistFilter(pAFCConfig.Field,
+                pAFCConfig.Value,
+                await FilterTrack.GetAlbumArtAsync(SpotifyAPI.Local.Enums.AlbumArtSize.Size160),
+                FilterTrack.ArtistResource.Name);
             DialogResult = DialogResult.OK;
         }
+
+        #endregion
+
     }
 
 }

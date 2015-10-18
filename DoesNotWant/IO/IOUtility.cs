@@ -29,7 +29,7 @@ namespace devoctomy.DoesNotWant.IO
             String pStrPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
             if (!pStrPath.EndsWith("\\"))
                 pStrPath += "\\";
-            pStrPath = String.Format("{0}devoctomy\\DouchebagFilter\\", pStrPath);
+            pStrPath = String.Format("{0}devoctomy\\DoesNotWant\\", pStrPath);
             if (!Directory.Exists(pStrPath))
                 Directory.CreateDirectory(pStrPath);
             return (pStrPath);
