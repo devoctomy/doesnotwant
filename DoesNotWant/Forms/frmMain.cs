@@ -4,6 +4,7 @@ using devoctomy.DoesNotWant.Spotify;
 using devoctomy.DoesNotWant.Usercontrols;
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace devoctomy.DoesNotWant.Forms
@@ -19,6 +20,17 @@ namespace devoctomy.DoesNotWant.Forms
             DisplayFilters();           //Display all filters
             Disconnected();             //Set as disconnected
             Program.StartMonitor();     //Start monitoring
+        }
+
+        #endregion
+
+        #region base class events
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = !Program.AllowClose;
+            ninMain.Visible = !e.Cancel;
+            Hide();
         }
 
         #endregion
@@ -57,6 +69,24 @@ namespace devoctomy.DoesNotWant.Forms
 
         #region private methods
 
+        private async Task CreateFilter(Track iTrack)
+        {
+            using (frmCreateFilter pFrmCreateFilter = new frmCreateFilter())
+            {
+                SpotifyAPI.Local.Models.Track pTrkCurrentlyPlaying = iTrack.CurrentTrack;
+                if (!pTrkCurrentlyPlaying.IsAd())
+                {
+                    pFrmCreateFilter.FilterTrack = pTrkCurrentlyPlaying;
+                    if (pFrmCreateFilter.ShowDialog() == DialogResult.OK)
+                    {
+                        await Config.Current().AddFilter(pFrmCreateFilter.Filter);
+                        DisplayFilter(pFrmCreateFilter.Filter);
+                        Program.SpotifyMonitor.Skip();
+                    }
+                }
+            }
+        }
+
         private void DisplayFilter(FilterBase iFilter)
         {
             Filter pFilFilter = new Filter();
@@ -90,21 +120,7 @@ namespace devoctomy.DoesNotWant.Forms
 
         private async void trkTrack_FilterClicked(object sender, System.EventArgs e)
         {
-            using (frmCreateFilter pFrmCreateFilter = new frmCreateFilter())
-            {
-                Usercontrols.Track pTrkTrack = (Usercontrols.Track)sender;
-                SpotifyAPI.Local.Models.Track pTrkCurrentlyPlaying = pTrkTrack.CurrentTrack;
-                if (!pTrkCurrentlyPlaying.IsAd())
-                {
-                    pFrmCreateFilter.FilterTrack = pTrkCurrentlyPlaying;
-                    if (pFrmCreateFilter.ShowDialog() == DialogResult.OK)
-                    {
-                        await Config.Current().AddFilter(pFrmCreateFilter.Filter);
-                        DisplayFilter(pFrmCreateFilter.Filter);
-                        Program.SpotifyMonitor.Skip();
-                    }
-                }
-            }
+            await CreateFilter((Track)sender);
         }
 
         private void butOK_Click(object sender, EventArgs e)
@@ -112,9 +128,31 @@ namespace devoctomy.DoesNotWant.Forms
             Hide();
         }
 
-        private void ninMain_DoubleClick(object sender, EventArgs e)
+        private void ninMain_DoubleClick_1(object sender, EventArgs e)
         {
             Show();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.AllowClose = true;
+            Close();
+        }
+
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Show();
+        }
+
+        private async void createFilterFromCurrentlyPlayingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            await CreateFilter(trkTrack);
+        }
+
+        private void butExit_Click(object sender, EventArgs e)
+        {
+            Program.AllowClose = true;
+            Close();
         }
 
         #endregion

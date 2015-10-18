@@ -22,6 +22,8 @@ namespace devoctomy.DoesNotWant
 
         public static Monitor SpotifyMonitor { get; private set; }
 
+        public static Boolean AllowClose { get; set; }
+
         #endregion
 
         #region public methods
