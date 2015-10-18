@@ -29,6 +29,7 @@ namespace devoctomy.DoesNotWant.Spotify
         private Boolean cBlnConnected;
         private ManualResetEvent cMRERunning;
         private ManualResetEvent cMREStop;
+        private ManualResetEvent cMREReady;
 
         #endregion
 
@@ -67,6 +68,7 @@ namespace devoctomy.DoesNotWant.Spotify
             cSLlLocalAPI.OnTrackChange += CSLlLocalAPI_OnTrackChange;
             cMRERunning = new ManualResetEvent(false);
             cMREStop = new ManualResetEvent(false);
+            cMREReady = new ManualResetEvent(true);
         }
 
         #endregion
@@ -79,6 +81,15 @@ namespace devoctomy.DoesNotWant.Spotify
             {
                 cTrdConnection = new Thread(cTrdConnection_Callback);
                 cTrdConnection.Start();
+            }
+        }
+
+        public void Stop()
+        {
+            if (cMRERunning.WaitOne(100))
+            {
+                cMREStop.Set();
+                cMREReady.WaitOne();
             }
         }
 
@@ -125,6 +136,7 @@ namespace devoctomy.DoesNotWant.Spotify
         {
             try
             {
+                cMREReady.Reset();
                 cMRERunning.Set();
                 while (!cMREStop.WaitOne(100))
                 {
@@ -159,13 +171,13 @@ namespace devoctomy.DoesNotWant.Spotify
             }
             catch(Exception ex)
             {
-                string pop = "";
                 //An error occurred
             }
             finally
             {
                 cMREStop.Reset();
                 cMRERunning.Reset();
+                cMREReady.Set();
             }
         }
 

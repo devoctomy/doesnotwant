@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"> 
+  <Fragment> 
+    <ComponentGroup Id="MesDependance" Directory="INSTALLFOLDER"> 
+      <Component Id="Newtonsoft.Json.dll"> 
+                    <File  Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="C:\npSoftware\GitHub\doesnotwant\DoesNotWant\bin\Debug\Newtonsoft.Json.dll" Vital="yes" KeyPath="yes" DiskId="1"/> 
+      </Component> 
+      <Component Id="SpotifyAPI.dll"> 
+                    <File  Id="SpotifyAPI.dll" Name="SpotifyAPI.dll" Source="C:\npSoftware\GitHub\doesnotwant\DoesNotWant\bin\Debug\SpotifyAPI.dll" Vital="yes" KeyPath="yes" DiskId="1"/> 
+      </Component> 
+      <Component Id="config.json"> 
+                    <File  Id="config.json" Name="config.json" Source="C:\npSoftware\GitHub\doesnotwant\DoesNotWant\config.json" Vital="yes" KeyPath="yes" DiskId="1"/> 
+      </Component> 
+    </ComponentGroup> 
+  </Fragment> 
+</Wix> 

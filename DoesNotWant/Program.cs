@@ -42,6 +42,8 @@ namespace devoctomy.DoesNotWant
             Application.SetCompatibleTextRenderingDefault(false);
             MainForm = new frmMain();
             Application.Run(MainForm);
+
+            Monitor.Current.Stop();
         }
 
         public static void StartMonitor()
