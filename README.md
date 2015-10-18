@@ -32,6 +32,11 @@ To let DoesNotWant run in the backround, simple click the "OK" button in the mai
 
 > If you would like to close DoesNotWant, simply click "Exit" in the main window, or right click the DoesNotWant icon in the system tray area, and then click "Exit" from the context menu.
 
+## Screenshots
+
+[Screenshot 1](http://devoctomy.s3.amazonaws.com/installers/DoesNotWant/screenshot-1.PNG)
+> DoesNotWant main window and filter creation dialog
+
 ## Pre-Build Installers
 
 Please be aware that these installers are not yet part of a continuous integration process so may be out of date if I have forgotten to rebuild upload them.
