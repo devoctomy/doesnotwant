@@ -212,6 +212,7 @@
             this.Controls.Add(this.ncdNotConnected);
             this.Controls.Add(this.panCurrentlyPlaying);
             this.Controls.Add(this.panButtons);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMain";
