@@ -34,7 +34,7 @@ To let DoesNotWant run in the backround, simple click the "OK" button in the mai
 
 ## Screenshots
 
-[Screenshot 1](http://devoctomy.s3.amazonaws.com/installers/DoesNotWant/screenshot-1.PNG)
+![Screenshot 1](http://devoctomy.s3.amazonaws.com/installers/DoesNotWant/screenshot-1.PNG)
 > DoesNotWant main window and filter creation dialog
 
 ## Pre-Build Installers
