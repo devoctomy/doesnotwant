@@ -1,0 +1,21 @@
+Change Log for Does Not Want
+============================
+
+Date : 20/10/2015
+
+Debug Version = 1.0.5771.35899
+Release Version = 1.0.5771.15416
+
+* Fixed issue with first track skipping when changing from stopped state to play state.
+
+---------------------------
+
+Date : 18/10/2015
+
+Debug Version = 1.0.5769.21719
+Release Version = 1.0.5769.21757
+
+* First release
+
+============================
+http://github.com/devoctomy

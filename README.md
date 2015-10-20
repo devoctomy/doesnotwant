@@ -44,3 +44,7 @@ Please be aware that these installers are not yet part of a continuous integrati
 [DoesNotWant - Latest Debug Build](http://devoctomy.s3.amazonaws.com/installers/DoesNotWant/DoesNotWant_debug.exe)
 
 [DoesNotWant - Latest Release Build (Recommended)](http://devoctomy.s3.amazonaws.com/installers/DoesNotWant/DoesNotWant_release.exe)
+
+All releases can be found on this page
+
+[Release History](http://devoctomy.s3.amazonaws.com/installers/DoesNotWant/History.html)
