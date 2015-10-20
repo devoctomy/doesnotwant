@@ -171,24 +171,29 @@ namespace devoctomy.DoesNotWant.Configuration
             oFilter = null;
             if (TrackFilters.ContainsKey(iTrack.TrackResource.Uri))
             {
+                //we matched a specific track in the filters
                 oFilter = TrackFilters[iTrack.TrackResource.Uri];
                 return (true);
             }
             else
             {
+                //it's not a track filter so let's see if it's an artist uri filter
                 if(ArtistFilters.ContainsKey(iTrack.ArtistResource.Uri))
                 {
+                    //we matched a specific artist in the filters
                     oFilter = ArtistFilters[iTrack.ArtistResource.Uri];
                     return (true);
                 }
                 else
                 {
+                    //it's not a specific artist filter so let's look for a name match
                     foreach (ArtistFilter curArtistFilter in ArtistFilters.Values)
                     {
                         if(curArtistFilter.Field == ArtistFilter.FilterField.name)
                         {
                             if (iTrack.ArtistResource.Name.IndexOf(curArtistFilter.Value, StringComparison.InvariantCultureIgnoreCase) > -1)
                             {
+                                //we matched the track by artist name in the filters
                                 oFilter = curArtistFilter;
                                 return (true);
                             }
@@ -196,6 +201,7 @@ namespace devoctomy.DoesNotWant.Configuration
                     }
                 }
             }
+            //this track isn't filtered
             return (false);
         }
 

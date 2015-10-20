@@ -195,7 +195,7 @@ namespace devoctomy.DoesNotWant.Spotify
             }
 
             if (pArgArgs.Skip)
-            {
+            {              
                 cSLlLocalAPI.Skip();
             }
         }
@@ -204,7 +204,25 @@ namespace devoctomy.DoesNotWant.Spotify
         {
             if (e.Playing)
             {
-                cSLlLocalAPI.Skip();
+                StatusResponse pSReStatus = cSLlLocalAPI.GetStatus();
+                if(pSReStatus!= null)
+                {
+                    cTrkCurrentlyPlaying = pSReStatus.Track;
+                    MonitorTrackChangedEventArgs pArgArgs = new MonitorTrackChangedEventArgs()
+                    {
+                        CurrentTrack = cTrkCurrentlyPlaying,
+                        Skip = false
+                    };
+                    if (TrackChanged != null)
+                    {
+                        TrackChanged(this, pArgArgs);
+                    }
+
+                    if (pArgArgs.Skip)
+                    {
+                        cSLlLocalAPI.Skip();
+                    }
+                }
             }
         }
 
